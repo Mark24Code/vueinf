@@ -1,5 +1,7 @@
 <template>
     <ul id="demo">
+        <h1>Hello world</h1>
+        <p>双击切换类型，单击展开/收起文件</p>
         <item class="item" :model="treeData">
         </item>
     </ul>
@@ -48,21 +50,5 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.lfbox {
-    width: 100px;
-    height: 200px;
-    float: left;
-    border: 1px solid #000;
-    box-sizing: border-box;
-    text-align: center;
-}
 
-.itembox {
-    width: 95px;
-    height: 50px;
-    border: 1px solid #999;
-    text-align: center;
-    clear: both;
-    margin: 2px auto;
-}
 </style>
