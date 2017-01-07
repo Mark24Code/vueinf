@@ -1,21 +1,26 @@
 <template>
   <div id="app">
-    <hello></hello>
+    <Note></Note>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+import Note from './components/Note'
 
 export default {
   name: 'app',
   components: {
-    Hello
+    Note
   }
 }
 </script>
 
 <style>
+body{
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -28,7 +33,6 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  margin: 10px;
   overflow: hidden;
 }
 </style>

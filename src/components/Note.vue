@@ -1,26 +1,25 @@
 <template>
     <div id="demo">
-<!--         <h1>Hello world</h1>
-        <p>双击切换类型，单击展开/收起文件</p> -->
         <div class="container">
-            <item class="item" :model="treeData" :cur_index="0">
-            </item>
+            <Item class="item" :model="treeData" :cur_index="0">
+            </Item>
         </div>
     </div>
 </template>
 <script>
-import item from './item.vue'
+import Item from './Item.vue'
 export default {
-    name: 'hello',
+    name: 'Note',
     components: {
-        item
+        Item
     },
     data() {
         return {
             treeData: {
                 fid: 0,
                 oid: 0,
-                name: 'My Tree',
+                id:0,
+                name: '我的笔记',
                 childrenids: [],
                 children: []
             }
@@ -37,10 +36,7 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 10px;
     overflow: hidden;
 }
-.container{
-  position: relative;
-}
+
 </style>
