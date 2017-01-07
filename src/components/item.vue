@@ -23,12 +23,35 @@ export default {
     },
     data() {
         return {
-            open: false,
             el_W:160,
             el_H:50
         }
     },
     computed: {
+        open: function(){
+            var _this = this;
+            var cur_open = _this.$store.getters.cur_open;
+            var cur_open_fid = cur_open.fid;
+            var cur_open_oid = cur_open.oid;
+            var cur_fid = _this.model.fid;
+            var cur_oid = _this.model.oid;
+
+            console.log(">>>>>");
+            console.log("cur_fid:"+cur_fid+",cur_oid:"+cur_oid)
+            console.log("cur_open_fid:"+cur_open_fid+",cur_open_oid:"+cur_open_oid)
+            console.log("<<<<<");
+
+
+            if(cur_fid>cur_open_fid){
+                return false
+            }else if(cur_fid == cur_open_fid && cur_oid == cur_open_oid){
+                return true
+            }else{
+                return true
+            }
+
+            // return true
+        },
         isFolder: function() {
             return this.model.children &&
                 this.model.children.length
@@ -42,9 +65,16 @@ export default {
     },
     methods: {
         toggle: function() {
-            if (this.isFolder) {
-                this.open = !this.open
+            var _this = this;
+            var cur_open = {
+                fid:_this.model.fid,
+                oid:_this.model.oid
             }
+            if (_this.isFolder) {
+                _this.$store.dispatch('update_cur_open',cur_open)
+            }
+
+            _this.open = !_this.open;
         },
         changeType: function() {
             if (!this.isFolder) {
