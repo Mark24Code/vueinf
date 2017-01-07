@@ -5,11 +5,11 @@
             <span v-if="isFolder">[{{open ? '-' : '+'}}]</span>
         </div>
         <div class="add" @click="addChild">添加</div>
-        <!-- <div class="chBox" v-show="open" v-if="isFolder" :style="{left:pos_left_ch+'px',top:pos_top_ch+'px'}"> -->
+        <div class="chBox" v-show="open" v-if="isFolder">
             <item class="item itembox" v-for="(model,index) in model.children" :model="model" :cur_index="index">
             </item>
 
-        <!-- </div> -->
+        </div>
     </div>
 </template>
 <script>
@@ -84,7 +84,7 @@ export default {
 }
 </script>
 <style scoped>
-.faBox,.chBox{
+.faBox{
 /*  real-width:160px;
     real-height:50px;
 */
