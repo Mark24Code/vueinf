@@ -16,33 +16,11 @@ export default {
     data() {
         return {
             treeData: {
+                fid:0,
+                oid:0,
                 name: 'My Tree',
-                children: [{
-                    name: 'hello'
-                }, {
-                    name: 'wat'
-                }, {
-                    name: 'child folder',
-                    children: [{
-                        name: 'child folder',
-                        children: [{
-                            name: 'hello'
-                        }, {
-                            name: 'wat'
-                        }]
-                    }, {
-                        name: 'hello'
-                    }, {
-                        name: 'wat'
-                    }, {
-                        name: 'child folder',
-                        children: [{
-                            name: 'hello'
-                        }, {
-                            name: 'wat'
-                        }]
-                    }]
-                }]
+                childrenids:[],
+                children: []
             }
         }
     }

@@ -1,7 +1,7 @@
 <template>
     <li>
         <div class="lfbox" :class="{bold: isFolder}" @click="toggle" @dblclick="changeType">
-            {{model.name}}
+            {{model.fid}}-{{model.oid}}:{{model.name}}
             <span v-if="isFolder">[{{open ? '-' : '+'}}]</span>
         </div>
         <ul v-show="open" v-if="isFolder">
@@ -43,9 +43,29 @@ export default {
             }
         },
         addChild: function() {
-            this.model.children.push({
-                name: 'new stuff'
-            })
+            var _this = this;
+            var sub_id =  0;
+            if(_this.model.childrenids.length!==0){
+               sub_id =  _this.max(_this.model.childrenids) + 1;
+            }
+            _this.model.childrenids.push(sub_id)
+            _this.model.children.push({
+                fid: _this.model.fid + 1,
+                oid: sub_id,
+                name: 'new stuff',
+                childrenids:[],
+                children:[]
+            });
+        },
+        max: function(arr) {
+            var max = arr[0];
+            var len = arr.length;
+            for (var i = 1; i < len; i++) {
+                if (arr[i] > max) {
+                    max = arr[i];
+                }
+            }
+            return max;
         }
     }
 }
