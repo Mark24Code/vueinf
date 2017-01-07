@@ -17,6 +17,6 @@ npm run build
 
 # 效果图
 
-[效果图](./README/note.gif)
+![效果图](./README/note.gif)
 
 
