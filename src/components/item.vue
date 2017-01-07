@@ -1,32 +1,43 @@
 <template>
-    <li>
-        <div class="lfbox" :class="{bold: isFolder}" @click="toggle" @dblclick="changeType">
+    <div class="faBox" :style="{left:pos_left+'px',top:pos_top+'px'}" >
+        <div :class="{bold: isFolder}" @click="toggle" @dblclick="changeType">
             {{model.fid}}-{{model.oid}}:{{model.name}}
             <span v-if="isFolder">[{{open ? '-' : '+'}}]</span>
         </div>
-        <ul v-show="open" v-if="isFolder">
-            <item class="item itembox" v-for="model in model.children" :model="model">
+        <div class="add" @click="addChild">添加</div>
+        <!-- <div class="chBox" v-show="open" v-if="isFolder" :style="{left:pos_left_ch+'px',top:pos_top_ch+'px'}"> -->
+            <item class="item itembox" v-for="(model,index) in model.children" :model="model" :cur_index="index">
             </item>
-            <li class="add" @click="addChild">+</li>
-        </ul>
-    </li>
+
+        <!-- </div> -->
+    </div>
 </template>
 <script>
 import Vue from 'vue'
 export default {
     name: 'item',
     props: {
-        model: Object
+        model: Object,
+        cur_index:Number,
+
     },
     data() {
         return {
-            open: false
+            open: false,
+            el_W:160,
+            el_H:50
         }
     },
     computed: {
         isFolder: function() {
             return this.model.children &&
                 this.model.children.length
+        },
+        pos_left:function(){
+            return this.model.fid * this.el_W;
+        },
+        pos_top:function(){
+            return this.cur_index*this.el_H;
         }
     },
     methods: {
@@ -52,10 +63,12 @@ export default {
             _this.model.children.push({
                 fid: _this.model.fid + 1,
                 oid: sub_id,
-                name: 'new stuff',
+                name: '新建stuff',
                 childrenids:[],
                 children:[]
             });
+            console.log("==== 自己 ====");
+            console.log("fid:"+_this.model.fid+";oid:"+_this.model.fid)
         },
         max: function(arr) {
             var max = arr[0];
@@ -71,4 +84,16 @@ export default {
 }
 </script>
 <style scoped>
+.faBox,.chBox{
+/*  real-width:160px;
+    real-height:50px;
+*/
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    margin: 5px;
+
+    position: fixed;
+    border: 1px solid #666;
+}
 </style>
