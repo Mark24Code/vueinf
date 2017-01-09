@@ -17,7 +17,12 @@ export default {
     },
     data() {
         return {
-            todos: this.$store.state.todos
+            // todos: this.$store.state.todos
+        }
+    },
+    computed:{
+        todos(){
+            return this.$store.getters.todos
         }
     },
     methods: {

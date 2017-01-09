@@ -20,6 +20,14 @@ Vue.http.get(config.apiBaseUrl + 'todo/list').then(function(response) {
                 // alert('update me...');
                 state.todos = {};
             }
+        },
+        actions:{
+
+        },
+        getters:{
+            todos(state){
+                return state.todos
+            }
         }
     });
     new Vue({
