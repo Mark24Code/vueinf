@@ -8,7 +8,7 @@
 # 安装依赖
 npm install
 
-# 热重载开发 localhost:8080
+# 热重载开发 localhost:8000
 npm run dev
 
 # 生产打包

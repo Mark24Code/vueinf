@@ -1,28 +1,28 @@
 <template>
     <div id="demo">
         <div class="container">
-            <Item class="item" :model="treeData" :cur_index="0">
-            </Item>
+            <Lane :todos="todos" @update="updateNode" class="level-0"></Lane>
         </div>
     </div>
 </template>
 <script>
-import Item from './Item.vue'
+import Lane from './Lane.vue'
 export default {
     name: 'Note',
     components: {
-        Item
+        Lane
+    },
+    mounted: function() {
+        // console.error(this.$store.state.todos);
     },
     data() {
         return {
-            treeData: {
-                fid: 0,
-                oid: 0,
-                id:0,
-                name: '我的笔记',
-                childrenids: [],
-                children: []
-            }
+            todos: this.$store.state.todos
+        }
+    },
+    methods: {
+        updateNode: function(expanedTodo) {
+            console.error(expanedTodo.name);
         }
     }
 }
