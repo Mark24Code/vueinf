@@ -12,7 +12,7 @@
 <script>
 import Vue from 'vue'
 import Bus from './Bus.vue'
-let apiBaseUrl = 'http://future.tuniu.me/api/';
+import config from '../api/config.js'
 export default {
     name: 'Lane',
     props: ['todos'],
@@ -29,7 +29,7 @@ export default {
                     Vue.set(_todo, 'children', []);
                 }
             }
-            this.$http.get(apiBaseUrl + 'todo/list', {params: {parent_id: todo.id}}).then((response) => {
+            this.$http.get(config.apiBaseUrl + 'todo/list', {params: {parent_id: todo.id}}).then((response) => {
                 Vue.set(todo, 'children', response.data);
                 this.$store.commit('updateNode', response.data);
             });
