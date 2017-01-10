@@ -1,33 +1,37 @@
 <template>
     <div id="demo">
         <div class="container">
-            <Lane :todos="todos" @update="updateNode" class="level-0"></Lane>
+            <Lane :parent="parent" :todos="todos" class="level-0" @removeLane="removeLane"></Lane>
         </div>
     </div>
 </template>
 <script>
+import Vue from 'vue'
 import Lane from './Lane.vue'
+import _ from 'lodash'
 export default {
     name: 'Note',
     components: {
         Lane
     },
     mounted: function() {
-        // console.error(this.$store.state.todos);
-    },
-    data() {
-        return {
-            // todos: this.$store.state.todos
-        }
+        console.error(this.$store.state.todos);
     },
     computed:{
-        todos(){
-            return this.$store.getters.todos
+        todos() {
+            // return this.$store.getters.todos
+            return this.$store.state.todos
+        },
+        parent() {
+            return {id: 0, level:0}
         }
     },
     methods: {
-        updateNode: function(expanedTodo) {
-            console.error(expanedTodo.name);
+        removeLane(todo) {
+            let todos = _.remove(this.todos, function(_todo) {
+                return _todo.id !== todo.id;
+            });
+            this.$store.commit('reset', todos);
         }
     }
 }

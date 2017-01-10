@@ -12,23 +12,18 @@ Vue.http.get(config.apiBaseUrl + 'todo/list').then(function(response) {
     let todos = response.data;
     const store = new Vuex.Store({
         state: {
-            count: 0,
             todos
-        },
-        mutations: {
-            updateNode(state, children) {
-                // alert('update me...');
-                state.todos = {};
-            }
-        },
-        actions:{
-
-        },
-        getters:{
-            todos(state){
-                return state.todos
+        }
+        ,mutations: {
+            reset(state, todos) {
+                state.todos = todos;
             }
         }
+        // ,getters:{
+        //     todos(state){
+        //         return state.todos
+        //     }
+        // }
     });
     new Vue({
         el: '#app',
